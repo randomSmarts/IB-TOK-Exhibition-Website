@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IB TOK Exhibition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #00796b;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .navbar a:hover {
+            background-color: #004d40;
+            color: #ffffff;
+        }
+        .content {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            border-radius: 8px;
+        }
+        .tabcontent {
+            display: none;
+            padding: 20px;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+        .student {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .student:hover {
+            transform: scale(1.05);
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            position: relative;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80%;
+            overflow-y: auto;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff5f5f;
+            color: #ffffff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .close-btn:hover {
+            background-color: #e53935;
+        }
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            padding-top: 75%; /* 4:3 Aspect Ratio */
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(63, 69, 81, 0.16);
+            margin-top: 1.6em;
+            margin-bottom: 0.9em;
+            will-change: transform;
+        }
+        .iframe-container iframe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="#" onclick="openTab('landing')">Home</a>
+    <a href="#" onclick="openTab('period1')">Period 1</a>
+    <a href="#" onclick="openTab('period3')">Period 3</a>
+</div>
+
+<div id="landing" class="tabcontent" style="display: block;">
+    <div class="content">
+        <h1>Welcome to the IB TOK Exhibition</h1>
+        <p>This website showcases the exhibitions of each student in IB TOK Year 1.</p>
+        <p>Created by Aarsh Mittal</p>
+    </div>
+</div>
+
+<div id="period1" class="tabcontent">
+    <div class="content">
+        <h1>Exhibitions for Period 1</h1>
+        <div class="container">
+            <!-- Repeat this block for each student in Period 1 -->
+            <div class="student" onclick="openPopup(1)">
+                Student 1
+            </div>
+            <!-- Add more student blocks here up to 30 -->
+        </div>
+    </div>
+</div>
+
+<div id="period3" class="tabcontent">
+    <div class="content">
+        <h1>Exhibitions for Period 8</h1>
+        <div class="container">
+            <!-- Repeat this block for each student in Period 8 -->
+            <div class="student" onclick="openPopup(2)">
+                Student 2
+            </div>
+            <div class="student" onclick="openPopup(3)">
+                Student 3
+            </div>
+            <!-- Add more student blocks here up to 30 -->
+        </div>
+    </div>
+</div>
+
+<!-- Example popup for a student, repeat and customize for each student -->
+<div id="popup-1" class="popup" onclick="closePopup(event, 1)">
+    <div class="popup-content" onclick="event.stopPropagation()">
+        <button class="close-btn" onclick="closePopupById(1)">Close</button>
+        <div class="iframe-container">
+            <iframe loading="lazy" src="https://www.canva.com/design/DAGFu_UlvCU/81SpexbBK456t7iDA_anlg/view?embed" allowfullscreen="allowfullscreen"></iframe>
+        </div>
+        <a href="https://www.canva.com/design/DAGFu_UlvCU/81SpexbBK456t7iDA_anlg/view?utm_content=DAGFu_UlvCU&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener">Process</a> by Aarsh
+    </div>
+</div>
+
+<!-- Popup for Student 3 -->
+<div id="popup-3" class="popup" onclick="closePopup(event, 3)">
+    <div class="popup-content" onclick="event.stopPropagation()">
+        <button class="close-btn" onclick="closePopupById(3)">Close</button>
+        <div class="iframe-container">
+            <iframe loading="lazy" src="https://www.canva.com/design/DAGFsryEt4c/AVllZfWb7Cc7Y9vHCmdutQ/view?embed" allowfullscreen="allowfullscreen"></iframe>
+        </div>
+        <a href="https://www.canva.com/design/DAGFsryEt4c/AVllZfWb7Cc7Y9vHCmdutQ/view?utm_content=DAGFu2crHvk&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener">Process</a> by Aarsh
+    </div>
+</div>
+
+<!-- So each popup event is associated with the student creation (1,2,3,etc) and then i take the smart embed link and put it here (up to the "view" point)-->
+
+
+
+<!-- Repeat the popup block for each student, ensuring unique IDs -->
+
+<!--
+<div id="period1" class="tabcontent">
+  <div class="content">
+    <h1>Exhibitions for Period 1</h1>
+    <div class="container">
+       Student 1
+<div class="student" onclick="openPopup(1)">
+    Student 1
+</div>
+ Student 2
+<div class="student" onclick="openPopup(2)">
+    Student 2
+</div>
+</div>
+</div>
+</div>
+
+ Popup for Student 1
+<div id="popup-1" class="popup" onclick="closePopup(event, 1)">
+    <div class="popup-content" onclick="event.stopPropagation()">
+        <button class="close-btn" onclick="closePopupById(1)">Close</button>
+        <div class="iframe-container">
+            <iframe loading="lazy" src="https://www.canva.com/design/DAGFu_UlvCU/81SpexbBK456t7iDA_anlg/view?embed" allowfullscreen="allowfullscreen"></iframe>
+        </div>
+        <a href="https://www.canva.com/design/DAGFu_UlvCU/81SpexbBK456t7iDA_anlg/view?utm_content=DAGFu_UlvCU&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener">Process</a> by Aarsh
+    </div>
+</div>
+
+ Popup for Student 2
+<div id="popup-2" class="popup" onclick="closePopup(event, 2)">
+    <div class="popup-content" onclick="event.stopPropagation()">
+        <button class="close-btn" onclick="closePopupById(2)">Close</button>
+        <div class="iframe-container">
+            <iframe loading="lazy" src="https://www.canva.com/design/DAGFu2crHvk/yAVVaeqP3AfYofNuMM35sw/view?embed" allowfullscreen="allowfullscreen"></iframe>
+        </div>
+        <a href="https://www.canva.com/design/DAGFu2crHvk/yAVVaeqP3AfYofNuMM35sw/view?utm_content=DAGFu2crHvk&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener">Copy of Process</a> by Aarsh
+    </div>
+</div>
+-->
+
+<script>
+    function openTab(tabName) {
+        var i, tabcontent;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        document.getElementById(tabName).style.display = "block";
+    }
+
+    function openPopup(id) {
+        document.getElementById('popup-' + id).style.display = 'flex';
+    }
+
+    function closePopup(event, id) {
+        if (event.target.classList.contains('popup')) {
+            document.getElementById('popup-' + id).style.display = 'none';
+        }
+    }
+
+    function closePopupById(id) {
+        document.getElementById('popup-' + id).style.display = 'none';
+    }
+</script>
+</body>
+</html>
