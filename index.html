@@ -150,16 +150,17 @@
             left: 0;
             border: none;
         }
+
         /* Search Bar */
         .search-bar {
             position: absolute;
             top: 0;
             right: 0;
-            padding: 10px 20px;
+            padding: 0 20px;
             display: flex;
             flex-direction: row;
             align-items: center;
-            background-color: #2d3436;
+            background-color: transparent;
             width: 300px;
             height: 7%;
         }
@@ -170,12 +171,6 @@
             padding: 8px;
             width: 100%;
             font-size: 14px;
-        }
-        .search-result {
-            padding: 8px 12px;
-            background-color: #ffffff;
-            cursor: pointer;
-            transition: background-color 0.3s;
         }
         .search-results-container {
             position: absolute;
@@ -189,15 +184,6 @@
             z-index: 1;
         }
 
-        .search-result {
-            padding: 8px 12px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .search-result:hover {
-            background-color: #f0f0f0;
-        }
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
