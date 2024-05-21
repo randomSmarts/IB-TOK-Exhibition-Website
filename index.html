@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
@@ -8,9 +9,10 @@
     <title>IB TOK Exhibition</title>
     <style>
         /* Font import */
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
         /* Base styling */
+
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #f5f7fa;
@@ -18,17 +20,19 @@
             padding: 0;
             color: #333;
         }
-
         /* Navbar styling */
+
         .navbar {
-    		background-color: #2d3436;
-		    display: flex;
-		    justify-content: flex-start; /* Left aligns navbar elements */
-		    align-items: center;
-		    padding: 10px 20px;
-		    padding-left: 20px; /* Left padding */
-		    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-		}
+            background-color: #2d3436;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            /* Allows for absolute positioning of search bar */
+            flex-wrap: wrap;
+        }
 
         .navbar a {
             color: #f5f7fa;
@@ -44,8 +48,8 @@
             background-color: #1e272e;
             color: #ffffff;
         }
-
         /* Content styling */
+
         .content {
             padding: 60px 20px;
             text-align: center;
@@ -60,16 +64,16 @@
             display: none;
             padding: 20px;
         }
-
         /* Container for student cards */
+
         .container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             padding: 20px;
         }
-
         /* Student card styling */
+
         .student {
             background-color: #ffffff;
             padding: 30px;
@@ -84,8 +88,8 @@
             transform: translateY(-10px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
         }
-
         /* Popup styling */
+
         .popup {
             display: none;
             position: fixed;
@@ -128,12 +132,13 @@
         .close-btn:hover {
             background-color: #ee5253;
         }
-
         /* iFrame container styling */
+
         .iframe-container {
             position: relative;
             width: 100%;
-            padding-top: 75%; /* 4:3 Aspect Ratio */
+            padding-top: 75%;
+            /* 4:3 Aspect Ratio */
             overflow: hidden;
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(63, 69, 81, 0.16);
@@ -150,63 +155,78 @@
             left: 0;
             border: none;
         }
-		/* Search Bar */
+        /* Search Bar */
+
         .search-bar {
-              position: absolute;
-  top: 0;
-  right: 0;
-  padding: 10px 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: #2d3436;
-  width: 300px;
-  height: 7%;
-          }
-          #search-input {
-  background-color: #f5f7fa;
-  border: none;
-  border-radius: 4px;
-  padding: 8px;
-  width: 100%;
-  font-size: 14px;
-}
-.search-result {
-  padding: 8px 12px;
-  background-color: #ffffff;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-          .search-results-container {
-            position: absolute; 
-            top: 100%; 
-            left: 0; 
-            width: 100%; 
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background-color: transparent;
+            width: 100%;
+            max-width: 300px;
+            margin-left: auto;
+            /* Push to the right */
+            margin-right: 20px;
+            order: 1;
+            /* Ensure it appears before the GitHub button on smaller screens */
+            position: relative;
+            /* Relative positioning to adjust search results container */
+        }
+
+        #search-input {
+            background-color: #f5f7fa;
+            border: none;
+            border-radius: 4px;
+            padding: 8px;
+            width: 100%;
+            font-size: 14px;
+            box-sizing: border-box;
+            /* Ensure padding is included in the element's total width and height */
+        }
+
+        .search-results-container {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 100%;
             background-color: #fff;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             max-height: 200px;
-            overflow-y: auto; 
-            z-index: 1; 
-          }
-          
-          .search-result {
+            overflow-y: auto;
+            z-index: 1;
+            border-radius: 4px;
+        }
+
+        .search-result {
             padding: 8px 12px;
+            background-color: #ffffff;
             cursor: pointer;
             transition: background-color 0.3s;
-          }
-          
-          .search-result:hover {
+        }
+
+        .search-result:hover {
             background-color: #f0f0f0;
-          }
+        }
         /* Animations */
+
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes popupAppear {
-            from { transform: scale(0.7); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         @keyframes fadeInUp {
@@ -219,8 +239,33 @@
                 transform: translateY(0);
             }
         }
+        /* Responsive adjustments */
+
+        @media (max-width: 768px) {
+            .search-bar {
+                width: 80%;
+                order: 2;
+                /* Ensure it appears after the GitHub button on smaller screens */
+                margin: 10px auto 2%;
+            }
+            .navbar a {
+                flex: 1 1 auto;
+                /* Ensure navbar links take available space evenly */
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .github-star {
+                text-align: center;
+                margin-right: -10%;
+                margin-top: 2%;
+                flex: 1 1 auto;
+                /* Ensure navbar links take available space evenly */
+            }
     </style>
 </head>
+
 <body>
 
 <div class="navbar">
@@ -229,14 +274,13 @@
     <a href="#" onclick="openTab('period3')">Period 3</a>
     <div class="github-star">
         <iframe src="https://ghbtns.com/github-btn.html?user=randomSmarts&repo=IB-TOK-Exhibition-Website&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160" height="30" title="GitHub"></iframe>
-    
-    
-    
+
+
     </div>
     <div class="search-bar">
         <input type="text" id="search-input" placeholder="Search for a student...">
         <div id="search-results" class="search-results-container"></div>
-      </div>
+    </div>
 </div>
 
 <div id="landing" class="tabcontent" style="display: block;">
@@ -645,39 +689,45 @@
 
 <script>
     const studentNames = [
-      "Jackson Gao", "Akash Gundlapally", "Pranati Mannava", "Krish Matai", "Ananya Padmanabhan",
-      "Amisha Reddy", "Arjun Saini", "David Sam", "Aria Zhou", "Aleia Bhalla", "Ryan Biggee",
-      "Andrew Cheng", "Dhruv Iyer", "Diya Jain", "Harshitha Karippara", "Anish Kumar", "Brian Lam",
-      "Tiffany Liu", "Dev Mehra", "Aarsh Mittal", "Sadhika Pendyala", "Ria Vakharia", "Siya Wu",
-      "Aiden Zhou", "Elizabeth Zhuge"
+        "Jackson Gao", "Akash Gundlapally", "Pranati Mannava", "Krish Matai", "Ananya Padmanabhan",
+        "Amisha Reddy", "Arjun Saini", "David Sam", "Aria Zhou", "Aleia Bhalla", "Ryan Biggee",
+        "Andrew Cheng", "Dhruv Iyer", "Diya Jain", "Harshitha Karippara", "Anish Kumar", "Brian Lam",
+        "Tiffany Liu", "Dev Mehra", "Aarsh Mittal", "Sadhika Pendyala", "Ria Vakharia", "Siya Wu",
+        "Aiden Zhou", "Elizabeth Zhuge"
     ];
 
     const searchInput = document.getElementById('search-input');
     const searchResults = document.getElementById('search-results');
 
     searchInput.addEventListener('input', function() {
-      const searchTerm = this.value.toLowerCase();
-      const filteredNames = studentNames.filter(name => name.toLowerCase().includes(searchTerm));
+        const searchTerm = this.value.toLowerCase();
+        const filteredNames = studentNames.filter(name => name.toLowerCase().includes(searchTerm));
 
-      searchResults.innerHTML = '';
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const filteredNames = studentNames.filter(name => name.toLowerCase().includes(searchTerm));
 
-      if (filteredNames.length > 0) {
-        filteredNames.forEach(name => {
-          const listItem = document.createElement('div');
-          listItem.textContent = name;
-          listItem.classList.add('search-result');
-          listItem.addEventListener('click', function() {
-            const studentIndex = studentNames.indexOf(name) + 1;
-            openPopup(studentIndex);
-            searchInput.value = '';
             searchResults.innerHTML = '';
-          });
-          searchResults.appendChild(listItem);
-        });
-      }
-    });
-  </script>
-</body>
-</body>
-</html>
 
+            if (searchTerm.trim() !== '') { // Check if search term is not empty
+                if (filteredNames.length > 0) {
+                    filteredNames.forEach(name => {
+                        const listItem = document.createElement('div');
+                        listItem.textContent = name;
+                        listItem.classList.add('search-result');
+                        listItem.addEventListener('click', function() {
+                            const studentIndex = studentNames.indexOf(name) + 1;
+                            openPopup(studentIndex);
+                            searchInput.value = '';
+                            searchResults.innerHTML = '';
+                        });
+                        searchResults.appendChild(listItem);
+                    });
+                }
+            }
+        })
+    });
+</script>
+</body>
+
+</html>
