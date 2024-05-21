@@ -5,60 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IB TOK Exhibition</title>
     <style>
+        /* Font import */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        /* Base styling */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #e0f7fa;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f7fa;
             margin: 0;
             padding: 0;
+            color: #333;
         }
+
+        /* Navbar styling */
         .navbar {
-            background-color: #00796b;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            background-color: #2d3436;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         .navbar a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
+            color: #f5f7fa;
             text-align: center;
             padding: 14px 20px;
             text-decoration: none;
-            transition: background-color 0.3s, color 0.3s;
+            transition: color 0.3s, background-color 0.3s;
+            margin: 0 10px;
+            border-radius: 4px;
         }
+
         .navbar a:hover {
-            background-color: #004d40;
+            background-color: #1e272e;
             color: #ffffff;
         }
+
+        /* Content styling */
         .content {
-            padding: 40px 20px;
+            padding: 60px 20px;
             text-align: center;
             background-color: #ffffff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             margin: 20px;
-            border-radius: 8px;
+            border-radius: 12px;
+            animation: fadeInUp 0.6s ease-in-out;
         }
+
         .tabcontent {
             display: none;
             padding: 20px;
         }
+
+        /* Container for student cards */
         .container {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             padding: 20px;
         }
+
+        /* Student card styling */
         .student {
             background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
+
         .student:hover {
-            transform: scale(1.05);
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
         }
+
+        /* Popup styling */
         .popup {
             display: none;
             position: fixed;
@@ -69,43 +93,52 @@
             background-color: rgba(0, 0, 0, 0.8);
             justify-content: center;
             align-items: center;
+            animation: fadeIn 0.5s;
         }
+
         .popup-content {
             background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
+            padding: 30px;
+            border-radius: 12px;
             position: relative;
             width: 90%;
-            max-width: 600px;
+            max-width: 800px;
             max-height: 80%;
             overflow-y: auto;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            animation: popupAppear 0.5s;
         }
+
         .close-btn {
             position: absolute;
             top: 10px;
             right: 10px;
-            background-color: #ff5f5f;
+            background-color: #ff6b6b;
             color: #ffffff;
             border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
+            padding: 10px;
+            border-radius: 50%;
             cursor: pointer;
             transition: background-color 0.3s;
         }
+
         .close-btn:hover {
-            background-color: #e53935;
+            background-color: #ee5253;
         }
+
+        /* iFrame container styling */
         .iframe-container {
             position: relative;
             width: 100%;
             padding-top: 75%; /* 4:3 Aspect Ratio */
             overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(63, 69, 81, 0.16);
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(63, 69, 81, 0.16);
             margin-top: 1.6em;
             margin-bottom: 0.9em;
             will-change: transform;
         }
+
         .iframe-container iframe {
             position: absolute;
             width: 100%;
@@ -114,6 +147,29 @@
             left: 0;
             border: none;
         }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes popupAppear {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
     </style>
 </head>
 <body>
