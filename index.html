@@ -676,24 +676,30 @@
         const searchTerm = this.value.toLowerCase();
         const filteredNames = studentNames.filter(name => name.toLowerCase().includes(searchTerm));
 
-        searchResults.innerHTML = '';
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const filteredNames = studentNames.filter(name => name.toLowerCase().includes(searchTerm));
 
-        if (filteredNames.length > 0) {
-            filteredNames.forEach(name => {
-                const listItem = document.createElement('div');
-                listItem.textContent = name;
-                listItem.classList.add('search-result');
-                listItem.addEventListener('click', function() {
-                    const studentIndex = studentNames.indexOf(name) + 1;
-                    openPopup(studentIndex);
-                    searchInput.value = '';
-                    searchResults.innerHTML = '';
-                });
-                searchResults.appendChild(listItem);
-            });
-        }
+            searchResults.innerHTML = '';
+
+            if (searchTerm.trim() !== '') { // Check if search term is not empty
+                if (filteredNames.length > 0) {
+                    filteredNames.forEach(name => {
+                        const listItem = document.createElement('div');
+                        listItem.textContent = name;
+                        listItem.classList.add('search-result');
+                        listItem.addEventListener('click', function () {
+                            const studentIndex = studentNames.indexOf(name) + 1;
+                            openPopup(studentIndex);
+                            searchInput.value = '';
+                            searchResults.innerHTML = '';
+                        });
+                        searchResults.appendChild(listItem);
+                    });
+                }
+            }
+        })
     });
-
 </script>
 </body>
 </html>
