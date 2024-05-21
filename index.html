@@ -1,6 +1,8 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IB TOK Exhibition</title>
@@ -19,13 +21,14 @@
 
         /* Navbar styling */
         .navbar {
-            background-color: #2d3436;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    		background-color: #2d3436;
+		    display: flex;
+		    justify-content: flex-start; /* Left aligns navbar elements */
+		    align-items: center;
+		    padding: 10px 20px;
+		    padding-left: 20px; /* Left padding */
+		    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		}
 
         .navbar a {
             color: #f5f7fa;
@@ -147,7 +150,54 @@
             left: 0;
             border: none;
         }
-
+		/* Search Bar */
+        .search-bar {
+              position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #2d3436;
+  width: 300px;
+  height: 7%;
+          }
+          #search-input {
+  background-color: #f5f7fa;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  width: 100%;
+  font-size: 14px;
+}
+.search-result {
+  padding: 8px 12px;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+          .search-results-container {
+            position: absolute; 
+            top: 100%; 
+            left: 0; 
+            width: 100%; 
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-height: 200px;
+            overflow-y: auto; 
+            z-index: 1; 
+          }
+          
+          .search-result {
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+          }
+          
+          .search-result:hover {
+            background-color: #f0f0f0;
+          }
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -179,14 +229,21 @@
     <a href="#" onclick="openTab('period3')">Period 3</a>
     <div class="github-star">
         <iframe src="https://ghbtns.com/github-btn.html?user=randomSmarts&repo=IB-TOK-Exhibition-Website&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160" height="30" title="GitHub"></iframe>
+    
+    
+    
     </div>
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search for a student...">
+        <div id="search-results" class="search-results-container"></div>
+      </div>
 </div>
 
 <div id="landing" class="tabcontent" style="display: block;">
     <div class="content">
         <h1>Welcome to the IB TOK Exhibition</h1>
         <p>This website showcases the exhibitions of each student in IB TOK Year 1.</p>
-        <p>Created by Aarsh Mittal</p>
+        <p>Created by Aarsh Mittal and Arush Yadlapati</p>
     </div>
 </div>
 
@@ -585,5 +642,42 @@
         document.getElementById('popup-' + id).style.display = 'none';
     }
 </script>
+
+<script>
+    const studentNames = [
+      "Jackson Gao", "Akash Gundlapally", "Pranati Mannava", "Krish Matai", "Ananya Padmanabhan",
+      "Amisha Reddy", "Arjun Saini", "David Sam", "Aria Zhou", "Aleia Bhalla", "Ryan Biggee",
+      "Andrew Cheng", "Dhruv Iyer", "Diya Jain", "Harshitha Karippara", "Anish Kumar", "Brian Lam",
+      "Tiffany Liu", "Dev Mehra", "Aarsh Mittal", "Sadhika Pendyala", "Ria Vakharia", "Siya Wu",
+      "Aiden Zhou", "Elizabeth Zhuge"
+    ];
+
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+
+    searchInput.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      const filteredNames = studentNames.filter(name => name.toLowerCase().includes(searchTerm));
+
+      searchResults.innerHTML = '';
+
+      if (filteredNames.length > 0) {
+        filteredNames.forEach(name => {
+          const listItem = document.createElement('div');
+          listItem.textContent = name;
+          listItem.classList.add('search-result');
+          listItem.addEventListener('click', function() {
+            const studentIndex = studentNames.indexOf(name) + 1;
+            openPopup(studentIndex);
+            searchInput.value = '';
+            searchResults.innerHTML = '';
+          });
+          searchResults.appendChild(listItem);
+        });
+      }
+    });
+  </script>
+</body>
 </body>
 </html>
+
